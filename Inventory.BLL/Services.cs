@@ -473,12 +473,14 @@ public sealed class TransferService(IUnitOfWork uow, IStoreService stores) : ITr
         var toStock = await uow.ProductStocks.GetByProductAndStoreAsync(request.ProductId, request.ToStoreId, cancellationToken);
         if (toStock is null)
         {
-            toStock = new ProductStock { ProductId = request.ProductId, StoreId = request.ToStoreId, Quantity = 0 };
+            toStock = new ProductStock { ProductId = request.ProductId, StoreId = request.ToStoreId, Quantity = request.Quantity };
             await uow.ProductStocks.AddAsync(toStock, cancellationToken);
         }
-
-        toStock.Quantity += request.Quantity;
-        uow.ProductStocks.Update(toStock);
+        else
+        {
+            toStock.Quantity += request.Quantity;
+            uow.ProductStocks.Update(toStock);
+        }
 
         await uow.StockTransactions.AddAsync(new StockTransaction
         {

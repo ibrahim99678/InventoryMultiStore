@@ -1,38 +1,46 @@
 @model IReadOnlyList<Inventory.Contract.StoreDto>
-
 @{
     ViewData["Title"] = "Stores";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h1 class="h3 m-0">Stores</h1>
-    <a class="btn btn-primary" asp-action="Create">Create</a>
+<div class="page-header d-flex flex-column flex-sm-row justify-content-between align-items-start gap-3">
+    <div>
+        <h1 class="page-title">Stores</h1>
+        <p class="page-subtitle">Warehouse and retail locations.</p>
+    </div>
+    <a class="btn btn-primary" asp-action="Create">Add store</a>
 </div>
 
-<table class="table table-striped table-bordered align-middle">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Location</th>
-            <th>Type</th>
-            <th style="width: 1%"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Name</td>
-                <td>@item.Location</td>
-                <td>@item.Type</td>
-                <td class="text-nowrap">
-                    <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this store?');">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="surface-card">
+    <div class="card-inner flush">
+        <div class="table-responsive">
+            <table class="table table-modern align-middle">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Type</th>
+                        <th class="text-end" style="min-width: 9rem">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@item.Name</td>
+                            <td class="text-muted">@item.Location</td>
+                            <td><span class="badge bg-light text-dark border">@item.Type</span></td>
+                            <td class="text-end text-nowrap">
+                                <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this store?');">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

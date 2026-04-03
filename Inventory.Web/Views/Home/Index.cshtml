@@ -1,8 +1,60 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="page-header">
+    <h1 class="page-title">Dashboard</h1>
+    <p class="page-subtitle">Manage catalog, locations, inventory movements, and history from one place.</p>
+</div>
+
+<div class="row g-3 g-lg-4">
+    <div class="col-sm-6 col-xl-4">
+        <a class="dash-card" asp-controller="Products" asp-action="Index">
+            <div class="dash-icon dash-icon--accent"><span>P</span></div>
+            <h3>Products</h3>
+            <p>Add and edit items in your catalog.</p>
+        </a>
+    </div>
+    <div class="col-sm-6 col-xl-4">
+        <a class="dash-card" asp-controller="Stores" asp-action="Index">
+            <div class="dash-icon dash-icon--sky"><span>S</span></div>
+            <h3>Stores &amp; warehouse</h3>
+            <p>Configure locations and types.</p>
+        </a>
+    </div>
+    <div class="col-sm-6 col-xl-4">
+        <a class="dash-card" asp-controller="Stocks" asp-action="Index">
+            <div class="dash-icon dash-icon--green"><span>K</span></div>
+            <h3>Stock levels</h3>
+            <p>View quantities by store.</p>
+        </a>
+    </div>
+    <div class="col-sm-6 col-xl-4">
+        <a class="dash-card" asp-controller="Purchase" asp-action="Create">
+            <div class="dash-icon dash-icon--sky"><span>In</span></div>
+            <h3>Purchase</h3>
+            <p>Receive stock into the warehouse.</p>
+        </a>
+    </div>
+    <div class="col-sm-6 col-xl-4">
+        <a class="dash-card" asp-controller="Transfer" asp-action="Create">
+            <div class="dash-icon dash-icon--accent"><span>Tr</span></div>
+            <h3>Transfer</h3>
+            <p>Move inventory from warehouse to a store.</p>
+        </a>
+    </div>
+    <div class="col-sm-6 col-xl-4">
+        <a class="dash-card" asp-controller="Sales" asp-action="Create">
+            <div class="dash-icon dash-icon--amber"><span>Out</span></div>
+            <h3>Sales</h3>
+            <p>Record sales from a store.</p>
+        </a>
+    </div>
+    <div class="col-sm-6 col-xl-4">
+        <a class="dash-card" asp-controller="Transactions" asp-action="Index">
+            <div class="dash-icon dash-icon--muted"><span>Tx</span></div>
+            <h3>Transactions</h3>
+            <p>Full audit trail with filters.</p>
+        </a>
+    </div>
 </div>

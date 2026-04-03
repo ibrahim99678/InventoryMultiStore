@@ -1,5 +1,26 @@
+/* Inventory — modern UI tokens & chrome */
+:root {
+  --inv-accent: #4f46e5;
+  --inv-accent-hover: #4338ca;
+  --inv-accent-soft: rgba(79, 70, 229, 0.12);
+  --inv-accent-ring: rgba(79, 70, 229, 0.35);
+  --inv-bg: #f4f6fb;
+  --inv-surface: #ffffff;
+  --inv-text: #0f172a;
+  --inv-text-muted: #64748b;
+  --inv-border: #e2e8f0;
+  --inv-nav-bg: #0f172a;
+  --inv-nav-text: #f1f5f9;
+  --inv-radius: 12px;
+  --inv-radius-sm: 8px;
+  --inv-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.06);
+  --inv-font: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+}
+
 html {
-  font-size: 14px;
+  font-size: 15px;
+  position: relative;
+  min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -8,15 +29,376 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--inv-font);
+  color: var(--inv-text);
+  background: var(--inv-bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(79, 70, 229, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(14, 165, 233, 0.08), transparent);
+}
+
+a {
+  color: var(--inv-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--inv-accent-hover);
+}
+
+/* Main column */
+.app-main {
+  flex: 1 0 auto;
+  padding-top: 1.5rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 992px) {
+  .app-main {
+    padding-top: 2rem;
+  }
+}
+
+/* Top navigation */
+.app-navbar {
+  background: var(--inv-nav-bg) !important;
+  border: none !important;
+  box-shadow: var(--inv-shadow);
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+}
+
+.app-navbar .navbar-brand {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--inv-nav-text) !important;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.app-navbar .brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--inv-radius-sm);
+  background: linear-gradient(135deg, var(--inv-accent) 0%, #818cf8 100%);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.45);
+}
+
+.app-navbar .nav-link {
+  color: rgba(241, 245, 249, 0.82) !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.45rem 0.85rem !important;
+  border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.app-navbar .nav-link:hover,
+.app-navbar .nav-link:focus {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.app-navbar .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.app-navbar .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* Footer */
+.app-footer {
+  flex-shrink: 0;
+  background: var(--inv-surface);
+  border-top: 1px solid var(--inv-border);
+  color: var(--inv-text-muted);
+  font-size: 0.875rem;
+  padding: 1.25rem 0;
+  margin-top: auto;
+}
+
+.app-footer a {
+  color: var(--inv-text-muted);
+  font-weight: 500;
+}
+
+.app-footer a:hover {
+  color: var(--inv-accent);
+}
+
+/* Page header */
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-header .page-title {
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--inv-text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.page-header .page-subtitle {
+  color: var(--inv-text-muted);
+  font-size: 0.95rem;
+  margin: 0.35rem 0 0;
+  max-width: 42rem;
+}
+
+/* Surfaces */
+.surface-card {
+  background: var(--inv-surface);
+  border-radius: var(--inv-radius);
+  border: 1px solid var(--inv-border);
+  box-shadow: var(--inv-shadow);
+}
+
+.surface-card .card-inner {
+  padding: 1.25rem 1.5rem;
+}
+
+.surface-card .card-inner.flush {
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .surface-card .card-inner {
+    padding: 1.5rem 1.75rem;
+  }
+}
+
+/* Tables */
+.table-modern {
+  margin-bottom: 0;
+  --bs-table-bg: transparent;
+}
+
+.table-modern thead th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--inv-text-muted);
+  border-bottom-width: 1px;
+  background: rgba(248, 250, 252, 0.8);
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+  vertical-align: middle;
+}
+
+.table-modern tbody td {
+  vertical-align: middle;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+  border-color: var(--inv-border);
+}
+
+.table-modern tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-modern tbody tr:hover {
+  background: rgba(79, 70, 229, 0.03);
+}
+
+/* Form layout */
+.form-panel {
+  max-width: 560px;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--inv-border);
+}
+
+/* Buttons */
+.btn {
+  font-weight: 600;
+  border-radius: var(--inv-radius-sm);
+  padding: 0.5rem 1.1rem;
+}
+
+.btn-primary {
+  background: var(--inv-accent);
+  border-color: var(--inv-accent);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--inv-accent-hover);
+  border-color: var(--inv-accent-hover);
+}
+
+.btn-outline-secondary {
+  border-color: var(--inv-border);
+  color: var(--inv-text);
+}
+
+.btn-outline-secondary:hover {
+  background: var(--inv-bg);
+  border-color: var(--inv-border);
+  color: var(--inv-text);
+}
+
+.btn-secondary {
+  background: #64748b;
+  border-color: #64748b;
+}
+
+/* Form controls */
+.form-control,
+.form-select {
+  border-radius: var(--inv-radius-sm);
+  border-color: var(--inv-border);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--inv-accent);
+  box-shadow: 0 0 0 3px var(--inv-accent-ring);
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--inv-text);
+  margin-bottom: 0.4rem;
+}
+
+/* Alerts */
+.alert {
+  border: none;
+  border-radius: var(--inv-radius-sm);
+}
+
+.alert-success {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+}
+
+.alert-danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: #b91c1c;
+}
+
+/* Badges (transaction types) */
+.badge-type {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35em 0.65em;
+  border-radius: 6px;
+}
+
+.badge-purchase {
+  background: rgba(14, 165, 233, 0.15);
+  color: #0369a1;
+}
+
+.badge-sale {
+  background: rgba(245, 158, 11, 0.18);
+  color: #b45309;
+}
+
+.badge-transfer {
+  background: var(--inv-accent-soft);
+  color: var(--inv-accent-hover);
+}
+
+/* Dashboard cards */
+.dash-card {
+  display: block;
+  height: 100%;
+  padding: 1.35rem;
+  border-radius: var(--inv-radius);
+  background: var(--inv-surface);
+  border: 1px solid var(--inv-border);
+  box-shadow: var(--inv-shadow);
+  color: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.dash-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.1);
+  color: inherit;
+}
+
+.dash-card .dash-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--inv-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.dash-icon span {
+  transform: translateY(0.5px);
+}
+
+.dash-icon--accent {
+  background: var(--inv-accent-soft);
+  color: var(--inv-accent-hover);
+}
+
+.dash-icon--sky {
+  background: rgba(14, 165, 233, 0.15);
+  color: #0369a1;
+}
+
+.dash-icon--green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #047857;
+}
+
+.dash-icon--amber {
+  background: rgba(245, 158, 11, 0.22);
+  color: #b45309;
+}
+
+.dash-icon--muted {
+  background: rgba(100, 116, 139, 0.12);
+  color: #475569;
+}
+
+.dash-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.dash-card p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--inv-text-muted);
+  line-height: 1.45;
+}
+
+.btn:focus,
+.btn:active:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 3px var(--inv-accent-ring);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }
